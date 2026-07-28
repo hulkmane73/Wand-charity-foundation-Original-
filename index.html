@@ -250,10 +250,14 @@
             background: var(--gray); display: flex; align-items: center; justify-content: center;
             font-size: 2.5rem; transition: var(--transition); position: relative;
         }
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
         .gallery-item:hover { transform: scale(1.03); box-shadow: var(--shadow-lg); }
         .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
         .lightbox.active { display: flex; }
         .lightbox .placeholder { background: #fff; padding: 40px; font-size: 4rem; border-radius: 12px; }
+        .lightbox img { max-width: 90%; max-height: 80%; border-radius: 12px; }
         .lightbox iframe { width: 80vw; max-width: 800px; height: 45vw; max-height: 450px; border: none; border-radius: 12px; }
 
         /* ============ VIDEO GALLERY ============ */
@@ -464,25 +468,28 @@
         </div>
     </section>
 
-    <!-- Gallery with 8 Photo Spaces (was 6) -->
+    <!-- Gallery with photo from user -->
     <section id="gallery">
         <div class="container">
             <div class="section-header" data-aos="fade-up"><span class="section-tag">Moments</span><h2>Our Gallery</h2><div class="divider"></div></div>
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openLightbox('file_00000000308c81f4a0b40de1ec979620.png')"></div>
+                <!-- User's photo as first item -->
+                <div class="gallery-item" onclick="openImageLightbox('./file_00000000308c81f4a0b40de1ec979620.png')">
+                    <img src="./file_00000000308c81f4a0b40de1ec979620.png" alt="Wand Charity photo">
+                </div>
+                <div class="gallery-item" onclick="openLightbox('📚')">📚</div>
                 <div class="gallery-item" onclick="openLightbox('💧')">💧</div>
                 <div class="gallery-item" onclick="openLightbox('🏥')">🏥</div>
                 <div class="gallery-item" onclick="openLightbox('🌱')">🌱</div>
                 <div class="gallery-item" onclick="openLightbox('🤝')">🤝</div>
                 <div class="gallery-item" onclick="openLightbox('🏫')">🏫</div>
-                <!-- Two new photo spaces -->
                 <div class="gallery-item" onclick="openLightbox('🩺')">🩺</div>
                 <div class="gallery-item" onclick="openLightbox('🥗')">🥗</div>
             </div>
         </div>
     </section>
 
-    <!-- Video Gallery (NEW) -->
+    <!-- Video Gallery -->
     <section id="video-gallery">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -492,13 +499,11 @@
                 <p>See the impact of your support in action.</p>
             </div>
             <div class="video-grid">
-                <!-- Video 1: Replace the background image URL with a real thumbnail -->
                 <div class="video-card" 
                      style="background-image: url('https://img.youtube.com/vi/tgbNymZ7vqY/hqdefault.jpg');"
                      onclick="openVideoLightbox('https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1')">
                     <div class="play-btn">▶</div>
                 </div>
-                <!-- Video 2: Replace with your own video -->
                 <div class="video-card" 
                      style="background-image: url('https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg');"
                      onclick="openVideoLightbox('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1')">
@@ -508,7 +513,7 @@
         </div>
     </section>
 
-    <!-- Lightbox (updated for both photo and video) -->
+    <!-- Lightbox -->
     <div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
         <div id="lightboxContent"></div>
     </div>
@@ -769,6 +774,16 @@
             document.getElementById('lightbox').classList.add('active');
         }
 
+        function openImageLightbox(src) {
+            const container = document.getElementById('lightboxContent');
+            container.innerHTML = '';
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = 'Gallery photo';
+            container.appendChild(img);
+            document.getElementById('lightbox').classList.add('active');
+        }
+
         function openVideoLightbox(url) {
             const container = document.getElementById('lightboxContent');
             container.innerHTML = '';
@@ -878,3 +893,4 @@
     </script>
 </body>
 </html>
+```
