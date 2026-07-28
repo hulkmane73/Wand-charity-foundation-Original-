@@ -254,6 +254,29 @@
         .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
         .lightbox.active { display: flex; }
         .lightbox .placeholder { background: #fff; padding: 40px; font-size: 4rem; border-radius: 12px; }
+        .lightbox iframe { width: 80vw; max-width: 800px; height: 45vw; max-height: 450px; border: none; border-radius: 12px; }
+
+        /* ============ VIDEO GALLERY ============ */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 24px; }
+        .video-card {
+            position: relative; border-radius: var(--radius); overflow: hidden;
+            cursor: pointer; aspect-ratio: 16/9; background: #000; display: flex;
+            align-items: center; justify-content: center; font-size: 3rem;
+            background-size: cover; background-position: center; transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .video-card:hover { transform: scale(1.03); box-shadow: var(--shadow-lg); }
+        .video-card::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 60%);
+            transition: var(--transition);
+        }
+        .video-card .play-btn {
+            position: absolute; width: 70px; height: 70px; background: rgba(255,255,255,0.9);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: var(--green); z-index: 2; transition: var(--transition);
+        }
+        .video-card:hover .play-btn { background: var(--green); color: #fff; transform: scale(1.1); }
 
         /* ============ UGANDA MAP ============ */
         .map-container { max-width: 800px; margin: 0 auto; position: relative; }
@@ -336,6 +359,7 @@
             .form-feedback { grid-column: span 1; }
             .social-links { justify-content: center; gap: 16px; }
             .social-links a { width: 44px; height: 44px; }
+            .lightbox iframe { width: 95vw; height: 55vw; }
         }
     </style>
 </head>
@@ -367,6 +391,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#programs">Programs</a></li>
                 <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#video-gallery">Videos</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="https://www.paypal.me/HarunaMusanje" target="_blank" class="btn-donate" id="btnDonateNav">Donate Now</a></li>
             </ul>
@@ -439,7 +464,7 @@
         </div>
     </section>
 
-    <!-- Gallery with Lightbox -->
+    <!-- Gallery with 8 Photo Spaces (was 6) -->
     <section id="gallery">
         <div class="container">
             <div class="section-header" data-aos="fade-up"><span class="section-tag">Moments</span><h2>Our Gallery</h2><div class="divider"></div></div>
@@ -450,11 +475,42 @@
                 <div class="gallery-item" onclick="openLightbox('🌱')">🌱</div>
                 <div class="gallery-item" onclick="openLightbox('🤝')">🤝</div>
                 <div class="gallery-item" onclick="openLightbox('🏫')">🏫</div>
+                <!-- Two new photo spaces -->
+                <div class="gallery-item" onclick="openLightbox('🩺')">🩺</div>
+                <div class="gallery-item" onclick="openLightbox('🥗')">🥗</div>
             </div>
         </div>
     </section>
+
+    <!-- Video Gallery (NEW) -->
+    <section id="video-gallery">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Watch Our Work</span>
+                <h2>Video Gallery</h2>
+                <div class="divider"></div>
+                <p>See the impact of your support in action.</p>
+            </div>
+            <div class="video-grid">
+                <!-- Video 1: Replace the background image URL with a real thumbnail -->
+                <div class="video-card" 
+                     style="background-image: url('https://img.youtube.com/vi/tgbNymZ7vqY/hqdefault.jpg');"
+                     onclick="openVideoLightbox('https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1')">
+                    <div class="play-btn">▶</div>
+                </div>
+                <!-- Video 2: Replace with your own video -->
+                <div class="video-card" 
+                     style="background-image: url('https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg');"
+                     onclick="openVideoLightbox('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1')">
+                    <div class="play-btn">▶</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox (updated for both photo and video) -->
     <div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
-        <div class="placeholder" id="lightboxContent">📚</div>
+        <div id="lightboxContent"></div>
     </div>
 
     <!-- Interactive Uganda Map -->
@@ -558,7 +614,7 @@
         </div>
     </section>
 
-    <!-- Footer (with newsletter using Formspree) -->
+    <!-- Footer -->
     <footer>
         <div class="wave"><svg viewBox="0 0 1440 100"><path fill="#1a1a1a" d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,74.7C1120,75,1280,53,1360,42.7L1440,32L1440,100L0,100Z"/></svg></div>
         <div class="footer-grid">
@@ -579,7 +635,6 @@
             </div>
             <div>
                 <h4>Newsletter</h4>
-                <!-- ✅ NEWSLETTER FORM NOW USING FORMSPREE -->
                 <form class="newsletter-form" id="newsletterForm" action="https://formspree.io/f/meeyngzo" method="POST">
                     <input type="hidden" name="_subject" value="New Newsletter Subscription">
                     <input type="hidden" name="form_type" value="newsletter">
@@ -703,11 +758,32 @@
         }
         setInterval(() => { if (Math.random() > 0.8) showDonationToast(); }, 40000);
 
-        // Gallery lightbox
+        // ---------- LIGHTBOX FUNCTIONS ----------
         function openLightbox(emoji) {
-            document.getElementById('lightboxContent').textContent = emoji;
+            const container = document.getElementById('lightboxContent');
+            container.innerHTML = '';
+            const div = document.createElement('div');
+            div.className = 'placeholder';
+            div.textContent = emoji;
+            container.appendChild(div);
             document.getElementById('lightbox').classList.add('active');
         }
+
+        function openVideoLightbox(url) {
+            const container = document.getElementById('lightboxContent');
+            container.innerHTML = '';
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            container.appendChild(iframe);
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        // Close lightbox when clicking background
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
+        });
 
         // Uganda map tooltip
         const regions = document.querySelectorAll('.region');
@@ -736,7 +812,7 @@
             navLinks.classList.remove('active');
         }));
 
-        // ---------- VOLUNTEER FORM (Formspree) ----------
+        // Volunteer form (Formspree)
         const volunteerForm = document.getElementById('volunteerForm');
         const formFeedback = document.getElementById('formFeedback');
         volunteerForm.addEventListener('submit', async (e) => {
@@ -768,7 +844,7 @@
             }
         });
 
-        // ---------- NEWSLETTER FORM (Formspree) ----------
+        // Newsletter form (Formspree)
         const newsletterForm = document.getElementById('newsletterForm');
         const newsletterFeedback = document.getElementById('newsletterFeedback');
         newsletterForm.addEventListener('submit', async (e) => {
