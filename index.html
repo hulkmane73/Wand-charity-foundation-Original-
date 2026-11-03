@@ -74,7 +74,9 @@ section{padding:90px 2rem}
 .programs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
 .program-card{background:#fff;border-radius:var(--radius);overflow:hidden;transition:var(--transition);box-shadow:var(--shadow-sm)}
 .program-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
-.program-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.program-img{height:190px;overflow:hidden;background:var(--gray)}
+.program-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.program-card:hover .program-img img{transform:scale(1.08)}
 .program-card:nth-child(1) .program-img{background:linear-gradient(135deg,#e8f5e9,#c8e6c9)}
 .program-card:nth-child(2) .program-img{background:linear-gradient(135deg,#fff9c4,#fff176)}
 .program-card:nth-child(3) .program-img{background:linear-gradient(135deg,#f0f4c3,#dce775)}
@@ -240,10 +242,10 @@ footer{background:var(--black);color:#ccc;padding:60px 2rem 30px}
 <div class="container">
 <div class="section-header" data-aos="fade-up"><span class="section-tag">What We Do</span><h2>Our Programs</h2><div class="divider"></div></div>
 <div class="programs-grid">
-<div class="program-card" data-aos="flip-left"><div class="program-img">📚</div><div class="program-body"><h4>Education</h4><p>Helping over 3,500 children stay in school.</p><div class="mini-progress"><div class="mini-fill" style="width:90%"></div></div><span>90%</span></div></div>
-<div class="program-card" data-aos="flip-left"><div class="program-img">💧</div><div class="program-body"><h4>Clean Water</h4><p>85 boreholes providing safe drinking water.</p><div class="mini-progress"><div class="mini-fill" style="width:78%"></div></div><span>78%</span></div></div>
-<div class="program-card" data-aos="flip-left"><div class="program-img">🏥</div><div class="program-body"><h4>Healthcare</h4><p>Mobile clinics reaching remote villages.</p><div class="mini-progress"><div class="mini-fill" style="width:65%"></div></div><span>65%</span></div></div>
-<div class="program-card" data-aos="flip-left"><div class="program-img">🌱</div><div class="program-body"><h4>Sustainable Livelihoods</h4><p>Vocational training and micro-enterprise.</p><div class="mini-progress"><div class="mini-fill" style="width:55%"></div></div><span>55%</span></div></div>
+<div class="program-card" data-aos="flip-left"><div class="program-img"><img src="./classroom%20in%20cameroon.jpg" alt="Children in a classroom - Education" loading="lazy"></div><div class="program-body"><h4>Education</h4><p>Helping over 3,500 children stay in school.</p><div class="mini-progress"><div class="mini-fill" style="width:90%"></div></div><span>90%</span></div></div>
+<div class="program-card" data-aos="flip-left"><div class="program-img"><img src="./images.jpg" alt="Clean water project" loading="lazy"></div><div class="program-body"><h4>Clean Water</h4><p>85 boreholes providing safe drinking water.</p><div class="mini-progress"><div class="mini-fill" style="width:78%"></div></div><span>78%</span></div></div>
+<div class="program-card" data-aos="flip-left"><div class="program-img"><img src="./images%20(1).jpg" alt="Healthcare outreach" loading="lazy"></div><div class="program-body"><h4>Healthcare</h4><p>Mobile clinics reaching remote villages.</p><div class="mini-progress"><div class="mini-fill" style="width:65%"></div></div><span>65%</span></div></div>
+<div class="program-card" data-aos="flip-left"><div class="program-img"><img src="./images%20(2).jpg" alt="Sustainable livelihoods" loading="lazy"></div><div class="program-body"><h4>Sustainable Livelihoods</h4><p>Vocational training and micro-enterprise.</p><div class="mini-progress"><div class="mini-fill" style="width:55%"></div></div><span>55%</span></div></div>
 </div>
 </div>
 </section>
