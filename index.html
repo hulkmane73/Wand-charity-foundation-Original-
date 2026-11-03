@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="./WCF.jpg">
 <title>Wand Charity Foundation | Changing Lives Through Love, Hope & Action</title>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -14,6 +15,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--charc
 a,button,input,textarea,select{cursor:pointer}
 #loader{position:fixed;inset:0;background:var(--white);z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s}
 .loader-logo{font-size:3.5rem;font-weight:900;color:var(--green);display:flex;align-items:center;gap:8px;animation:pulse 1.5s infinite}
+.loader-logo img{height:120px;width:auto;max-width:70vw;border-radius:18px;object-fit:contain;box-shadow:var(--shadow)}
 .leaf{width:30px;height:30px;background:var(--yellow);border-radius:50% 0 50% 50%;transform:rotate(45deg);animation:growLeaf 1.8s ease-in-out infinite}
 @keyframes growLeaf{0%,100%{transform:rotate(45deg) scale(.8);opacity:.6}50%{transform:rotate(45deg) scale(1.2);opacity:1}}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
@@ -21,7 +23,7 @@ a,button,input,textarea,select{cursor:pointer}
 .navbar{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);padding:0 2rem;height:78px}
 .nav-container{max-width:1250px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:100%}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:1.5rem;color:var(--green)}
-.logo-img{width:45px;height:45px;background:var(--green);border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:1.3rem}
+.logo-img{width:52px;height:52px;border-radius:12px;object-fit:cover;display:block;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .nav-links{display:flex;list-style:none;gap:1.6rem;align-items:center}
 .nav-links a{text-decoration:none;color:var(--charcoal);font-weight:600;font-size:.95rem;transition:var(--transition);padding:6px 0;position:relative}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--green);transition:var(--transition)}
@@ -104,11 +106,13 @@ section{padding:90px 2rem}
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:2000;align-items:center;justify-content:center}
 .lightbox.active{display:flex}
 .lightbox img{max-width:90vw;max-height:85vh;border-radius:12px}
-.lightbox iframe{width:80vw;max-width:800px;height:45vw;max-height:450px;border:none;border-radius:12px}
-.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-.video-card{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:16/9;background:linear-gradient(135deg,var(--green),var(--green-dark)) center/cover;display:flex;align-items:center;justify-content:center;transition:var(--transition);box-shadow:var(--shadow-sm)}
+.lightbox iframe{width:min(92vw,380px);height:min(82vh,675px);border:none;border-radius:12px;background:#000}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;max-width:1000px;margin:0 auto}
+.video-card{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:9/16;background:linear-gradient(135deg,var(--green),var(--green-dark)) center/cover;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);box-shadow:var(--shadow-sm)}
 .video-card:hover{transform:scale(1.03);box-shadow:var(--shadow-lg)}
-.video-card .play-btn{width:70px;height:70px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--green);transition:var(--transition)}
+.video-card::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,.05) 60%)}
+.video-card .video-label{position:absolute;left:14px;right:14px;bottom:14px;color:#fff;font-weight:700;font-size:.95rem;z-index:2}
+.video-card .play-btn{position:relative;z-index:2;width:70px;height:70px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--green);transition:var(--transition)}
 .video-card:hover .play-btn{background:var(--green);color:#fff;transform:scale(1.1)}
 .map-container{max-width:800px;margin:0 auto;position:relative}
 .region{fill:#e0e0e0;transition:.3s;cursor:pointer}
@@ -156,7 +160,7 @@ footer{background:var(--black);color:#ccc;padding:60px 2rem 30px}
 .form-grid,.contact-grid{grid-template-columns:1fr}
 .form-feedback{grid-column:span 1}
 .form-grid .btn{grid-column:span 1!important}
-.lightbox iframe{width:95vw;height:55vw}
+
 .timeline-item{width:100%;margin-left:0!important;justify-content:flex-start!important}
 .timeline::before{left:8px}
 .timeline-content{width:100%}
@@ -173,12 +177,12 @@ footer{background:var(--black);color:#ccc;padding:60px 2rem 30px}
 <symbol id="i-fb" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></symbol>
 </svg>
 
-<div id="loader"><div class="loader-logo"><span>WCF</span><div class="leaf"></div></div></div>
+<div id="loader"><div class="loader-logo"><img src="./WCF.jpg" alt="Wand Charity Foundation logo"><div class="leaf"></div></div></div>
 <div class="floating-hearts" id="heartsContainer"></div>
 
 <nav class="navbar" id="navbar">
 <div class="nav-container">
-<a href="#home" class="nav-logo"><div class="logo-img">WCF</div>Wand Charity</a>
+<a href="#home" class="nav-logo"><img src="./WCF.jpg" class="logo-img" alt="WCF logo">Wand Charity</a>
 <ul class="nav-links" id="navLinks">
 <li><a href="#home" class="active">Home</a></li>
 <li><a href="#about">About</a></li>
@@ -287,8 +291,10 @@ footer{background:var(--black);color:#ccc;padding:60px 2rem 30px}
 <div class="container">
 <div class="section-header" data-aos="fade-up"><span class="section-tag">Watch Our Work</span><h2>Video Gallery</h2><div class="divider"></div><p>See the impact of your support in action.</p></div>
 <div class="video-grid">
-<div class="video-card" onclick="openVideoLightbox('https://www.instagram.com/reel/DbVgerKsu2T/embed')"><div class="play-btn">▶</div></div>
-<div class="video-card" style="background-image:url('https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg')" onclick="openVideoLightbox('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1')"><div class="play-btn">▶</div></div>
+<div class="video-card" style="background-image:url('https://img.youtube.com/vi/08M8e-Tf3c8/hqdefault.jpg')" onclick="openVideoLightbox('https://www.youtube.com/embed/08M8e-Tf3c8?autoplay=1&rel=0')"><div class="play-btn">▶</div><div class="video-label">Watch Our Work</div></div>
+<div class="video-card" style="background-image:url('https://img.youtube.com/vi/ViGs75AYDQM/hqdefault.jpg')" onclick="openVideoLightbox('https://www.youtube.com/embed/ViGs75AYDQM?autoplay=1&rel=0')"><div class="play-btn">▶</div><div class="video-label">Our Impact</div></div>
+<div class="video-card" style="background-image:url('https://img.youtube.com/vi/ftV7y1w_EiI/hqdefault.jpg')" onclick="openVideoLightbox('https://www.youtube.com/embed/ftV7y1w_EiI?autoplay=1&rel=0')"><div class="play-btn">▶</div><div class="video-label">Community Stories</div></div>
+<div class="video-card" onclick="openVideoLightbox('https://www.instagram.com/reel/DbVgerKsu2T/embed')"><div class="play-btn">▶</div><div class="video-label">On Instagram</div></div>
 </div>
 </div>
 </section>
@@ -384,7 +390,7 @@ footer{background:var(--black);color:#ccc;padding:60px 2rem 30px}
 <!-- Footer -->
 <footer>
 <div class="footer-grid">
-<div><h4>Wand Charity</h4><p>Changing lives through love, hope &amp; action.</p></div>
+<div><img src="./WCF.jpg" alt="WCF logo" style="height:70px;width:auto;border-radius:12px;margin-bottom:12px;display:block;"><h4>Wand Charity</h4><p>Changing lives through love, hope &amp; action.</p></div>
 <div><h4>Quick Links</h4>
 <a href="#home" style="color:#ccc;display:block;margin-bottom:4px;">Home</a>
 <a href="#programs" style="color:#ccc;display:block;margin-bottom:4px;">Programs</a>
